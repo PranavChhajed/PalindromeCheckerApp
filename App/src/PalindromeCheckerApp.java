@@ -1,23 +1,38 @@
 public class PalindromeCheckerApp {
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        // Hardcoded string
         String sr = "Racecar";
+
+        // Convert to lowercase for proper comparison
         String srlow = sr.toLowerCase();
-        if (isPalindrome(srlow)) {
+
+        // Reverse the string
+        String reversed = reverseString(srlow);
+
+        // Check if palindrome
+        if (srlow.equals(reversed)) {
             System.out.println("\"" + sr + "\" is a palindrome");
         } else {
             System.out.println("\"" + sr + "\" is NOT a palindrome");
         }
     }
-    public static boolean isPalindrome(String input) {
+
+    // Function to reverse a string manually
+    public static String reverseString(String str) {
+        char[] chars = str.toCharArray();
         int left = 0;
-        int right = input.length() - 1;
+        int right = chars.length - 1;
+
         while (left < right) {
-            if (input.charAt(left) != input.charAt(right)) {
-                return false;
-            }
+            // Swap characters
+            char temp = chars[left];
+            chars[left] = chars[right];
+            chars[right] = temp;
+
             left++;
             right--;
         }
-        return true;
+
+        return new String(chars);
     }
 }
